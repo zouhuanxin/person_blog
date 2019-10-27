@@ -1,9 +1,9 @@
 # person_blog
 personal blog program,provide registered users,published articles,comment reply and other basic funtions...
 
-##个人博客后台服务器
+## 个人博客后台服务器
 
-####目前暂不开发具体接口，如有需求使用可以私聊我，qq:634448817
+#### 目前暂不开发具体接口，如有需求使用可以私聊我，qq:634448817
 
 1. 接口
 - 注册博客用户接口 post
