@@ -45,9 +45,9 @@ personal blog program,provide registered users,published articles,comment reply 
    - blog_article表格(博客文章表)
    <br>*blog_id字段与用户表的id字段进行外键链接*
    
-   |id|blog_id|blog_title|blog_content|create_time|
-   | --- | --- | --- | --- | --- |
-   |1|1|android四大组件|活动，广播。。。。。|2019-10-27 21:10:44|
+   |id|blog_id|blog_title|blog_content|create_time|read_number|
+   | --- | --- | --- | --- | --- | --- |
+   |1|1|android四大组件|活动，广播。。。。。|2019-10-27 21:10:44|0|
    ---
  
    - blog_comments表格(评论表)

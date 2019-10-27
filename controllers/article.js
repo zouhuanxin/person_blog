@@ -8,7 +8,7 @@ var fn_get_all_article = async (ctx,next) => {
 
 var fn_add_article = async (ctx,next) => {
     var updatetimes = sd.format(new Date(), 'YYYY-MM-DD HH:mm:ss');
-    var arr = [ctx.request.body.blog_id,ctx.request.body.blog_title,ctx.request.body.blog_content,updatetimes];
+    var arr = [ctx.request.body.blog_id,ctx.request.body.blog_title,ctx.request.body.blog_content,updatetimes,0];
     var res = await articleDao.add_article(arr);
     ctx.response.body = res;
 }

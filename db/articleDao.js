@@ -56,7 +56,7 @@ function query_title(title,page,number){
 
 //add blog article
 function add_article(arr){
-    var sql = 'INSERT INTO '+table_name+' (blog_id,blog_title,blog_content,create_time) VALUES (?,?,?,?)';
+    var sql = 'INSERT INTO '+table_name+' (blog_id,blog_title,blog_content,create_time,read_number) VALUES (?,?,?,?,?)';
     var connection = pool.connstart();
     return new Promise(function (resolve, reject) {
         connection.query(sql,arr,function (err,result) {
