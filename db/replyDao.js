@@ -1,12 +1,12 @@
 const pool = require('./mysqlpool');
 
 //comments cannotn be delect and update but can only can be add and query
-const table_name = 'blog_comments';
+const table_name = 'blog_reply';
 
-//query all article data
-//query data by blog_article_id
-function get_all_comments(blog_article_id,page, number) {
-    var sql = 'SELECT * FROM ' + table_name + 'WHERE blog_article_id='+blog_article_id+' LIMIT ' + page + ',' + number + '';
+//query all reply data
+//query data by blog_comments_id
+function get_all_reply(blog_comments_id,page, number) {
+    var sql = 'SELECT * FROM ' + table_name + 'WHERE blog_comments_id='+blog_comments_id+' LIMIT ' + page + ',' + number + '';
     var connection = pool.connstart();
     return new Promise(function (resolve, reject) {
             connection.query(sql, function (err, result) {
@@ -21,9 +21,9 @@ function get_all_comments(blog_article_id,page, number) {
     );
 }
 
-//add blog comments
-function add_comments(arr){
-    var sql = 'INSERT INTO '+table_name+' (blog_article_id,blog_id,comments_content,create_time) VALUES (?,?,?,?)';
+//add blog reply
+function add_reply(arr){
+    var sql = 'INSERT INTO '+table_name+' (blog_comments_id,commtens_id,reply_content,reply_id,create_time) VALUES (?,?,?,?,?)';
     var connection = pool.connstart();
     return new Promise(function (resolve, reject) {
         connection.query(sql,arr,function (err,result) {
@@ -39,6 +39,6 @@ function add_comments(arr){
 
 
 module.exports = {
-    get_all_comments,
-    add_comments
+    get_all_reply,
+    add_reply
 }

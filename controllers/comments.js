@@ -2,7 +2,7 @@ const commentsDao = require('../db/commentsDao');
 const sd = require('silly-datetime');
 
 var fn_get_all_comments = async (ctx,next) => {
-    var res = await commentsDao.get_all_article(ctx.query.page,ctx.query.number);
+    var res = await commentsDao.get_all_article(ctx.query.blog_article_id,ctx.query.page,ctx.query.number);
     ctx.response.body = res;
 }
 

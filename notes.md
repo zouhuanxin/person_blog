@@ -38,7 +38,7 @@
   - blog_reply表格(评论回复表)
   <br>*blog_comments_id字段与评论表的id字段进行外键链接*
   
-  |id|blog_comments_id|blog_id|comments_content|reply_id|create_time|
+  |id|blog_comments_id|commtens_id|reply_content|reply_id|create_time|
   | --- | --- | --- | --- | --- |---|
   |1|1|2|第一条评论回复|1|2019-10-27 21:10:44|
   |2|1|3|第二条评论回复|1|2019-10-27 21:10:44|

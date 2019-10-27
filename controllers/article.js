@@ -13,7 +13,13 @@ var fn_add_article = async (ctx,next) => {
     ctx.response.body = res;
 }
 
+var fn_delect_article = async (ctx,next) => {
+    var res = await articleDao.delect_article(ctx.query.id);
+    ctx.response.body = res;
+}
+
 module.exports = {
     'GET /get_all_article':fn_get_all_article,
-    'POST /add_article':fn_add_article
+    'POST /add_article':fn_add_article,
+    'GET /delect_article':fn_delect_article
 }
