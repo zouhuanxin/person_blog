@@ -3,6 +3,8 @@ personal blog program,provide registered users,published articles,comment reply 
 
 ##个人博客后台服务器
 
+####目前暂不开发具体接口，如有需求使用可以私聊我，qq:634448817
+
 1. 接口
 - 注册博客用户接口 post
 - 查询博客用户接口 get
@@ -12,7 +14,7 @@ personal blog program,provide registered users,published articles,comment reply 
 - 修改博客文章接口 post
 <br>....
 
-2.数据库表格设计
+2.数据库表格设计  (初稿并非完整表设计，仅供观赏)
   - blog_user表格 (用户表)
   
   | id | blog_name | blog_password | blog_email | blog_notice |
@@ -23,7 +25,6 @@ personal blog program,provide registered users,published articles,comment reply 
   ---
   
   - blog_article表格(博客文章表)
-  <br>*blog_id字段与用户表的id字段进行外键链接*
   
   |id|blog_id|blog_title|blog_content|create_time|
   | --- | --- | --- | --- | --- |
@@ -31,7 +32,6 @@ personal blog program,provide registered users,published articles,comment reply 
   ---
 
   - blog_comments表格(评论表)
-  <br>*blog_article_id字段与博客文章表的id字段进行外键链接*
   
   |id|blog_article_id|blog_id|comments_content|create_time|
   | --- | --- | --- | --- | --- |
@@ -39,7 +39,6 @@ personal blog program,provide registered users,published articles,comment reply 
   ---
   
   - blog_reply表格(评论回复表)
-  <br>*blog_comments_id字段与评论表的id字段进行外键链接*
   
   |id|blog_comments_id|blog_id|comments_content|reply_id|create_time|
   | --- | --- | --- | --- | --- |---|
