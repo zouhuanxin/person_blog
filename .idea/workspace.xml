@@ -44,18 +44,19 @@
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="reference.settings.ide.settings.file-colors" />
+    <property name="ts.external.directory.path" value="E:\IDEA\IntelliJ IDEA 2019.2\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="ReadonlyStatusHandler">
     <option name="SHOW_DIALOG" value="false" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\Ideaporject\personal_blog\controllers" />
-      <recent name="D:\Ideaporject\personal_blog\db" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Ideaporject\personal_blog\middle" />
       <recent name="D:\Ideaporject\personal_blog" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Ideaporject\personal_blog\controllers" />
+      <recent name="D:\Ideaporject\personal_blog\db" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -70,12 +71,20 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Node.js.app3.js">
+    <configuration name="app2.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="app2.js" working-dir="$PROJECT_DIR$">
+      <method v="2" />
+    </configuration>
+    <configuration name="app3.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="app3.js" working-dir="$PROJECT_DIR$">
+      <method v="2" />
+    </configuration>
     <configuration name="app.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="app.js" working-dir="$PROJECT_DIR$">
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Node.js.app3.js" />
+        <item itemvalue="Node.js.app2.js" />
         <item itemvalue="Node.js.app.js" />
       </list>
     </recent_temporary>
@@ -93,6 +102,10 @@
       <workItem from="1572145722457" duration="2344000" />
       <workItem from="1572149794949" duration="31039000" />
       <workItem from="1572199811378" duration="131000" />
+      <workItem from="1572237954365" duration="25651000" />
+      <workItem from="1572327468266" duration="93000" />
+      <workItem from="1572327872542" duration="9034000" />
+      <workItem from="1572355489722" duration="26676000" />
     </task>
     <servers />
   </component>

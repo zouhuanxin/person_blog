@@ -6,7 +6,7 @@ const table_name = 'blog_comments';
 //query all article data
 //query data by blog_article_id
 function get_all_comments(blog_article_id,page, number) {
-    var sql = 'SELECT * FROM ' + table_name + 'WHERE blog_article_id='+blog_article_id+' LIMIT ' + page + ',' + number + '';
+    var sql = 'SELECT * FROM ' + table_name + ' WHERE blog_article_id='+blog_article_id+' ORDER BY create_time DESC LIMIT ' + page + ',' + number + '';
     var connection = pool.connstart();
     return new Promise(function (resolve, reject) {
             connection.query(sql, function (err, result) {
@@ -15,7 +15,7 @@ function get_all_comments(blog_article_id,page, number) {
                     reject(err);
                 }
                 resolve(result);
-                pool.connstop();
+                connection.end();
             });
         }
     );
@@ -23,7 +23,7 @@ function get_all_comments(blog_article_id,page, number) {
 
 //add blog comments
 function add_comments(arr){
-    var sql = 'INSERT INTO '+table_name+' (blog_article_id,blog_id,comments_content,create_time) VALUES (?,?,?,?)';
+    var sql = 'INSERT INTO '+table_name+' (blog_article_id,comments_name,comments_content,create_time) VALUES (?,?,?,?)';
     var connection = pool.connstart();
     return new Promise(function (resolve, reject) {
         connection.query(sql,arr,function (err,result) {
@@ -32,7 +32,7 @@ function add_comments(arr){
                 reject(err);
             }
             resolve(result);
-            pool.connstop();
+            connection.end();
         });
     });
 }

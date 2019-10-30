@@ -8,10 +8,10 @@ var fn_get_all_reply = async (ctx,next) => {
 
 var fn_add_reply = async (ctx,next) => {
     var updatetimes = sd.format(new Date(), 'YYYY-MM-DD HH:mm:ss');
-    var arr = [ctx.request.body.blog_comments_id,ctx.request.body.commtens_id,ctx.request.body.reply_content
-        ,ctx.request.body.reply_id,updatetimes];
+    var arr = [ctx.request.body.blog_comments_id,ctx.request.body.comments_name,ctx.request.body.reply_content
+            ,ctx.request.body.reply_name,updatetimes];
     var res = await replyDao.add_reply(arr);
-    ctx.response.body = res;
+    ctx.response.body = '{"code":0,"msg":"返回成功"}';
 }
 
 module.exports = {

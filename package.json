@@ -2,7 +2,7 @@
   "name": "personal_blog",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "app3.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js"
@@ -13,7 +13,10 @@
   "dependencies": {
     "koa": "^2.0.0",
     "koa-bodyparser": "3.2.0",
+    "koa-route": "^3.2.0",
     "koa-router": "7.0.0",
+    "koa-websocket": "^6.0.0",
+    "koa2-cors": "^2.0.6",
     "mysql": "^2.17.1",
     "silly-datetime": "^0.1.2"
   }
