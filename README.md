@@ -1,86 +1,168 @@
-# person_blog
-personal blog program,provide registered users,published articles,comment reply and other basic funtions...
+## 个人博客服务器 （node框架开发）
 
-## 个人博客后台服务器
+服务器开发目的有二
 
-#### 目前暂不开发具体接口，如有需求使用可以私聊我，qq:634448817
+1.自己刚好想做个博客
 
-请使用app3.js启动项目 
+2.竟然都做了那就干脆把服务器拓展下
 
-1. 接口
-- 博客用户接口 
-  > /get login <br> 
-    **1.blog_name<br>2.blog_password**<br>
-  > /post register <Br>
-    **1.blog_name<br>2.blog_password<Br>3.blog_email**
-  
-- 博客文章接口 
-  > /get get_all_article <br>
-    **No parameters required** <br> 
-  > /post add_article <br>
-    **1.blog_id<br>2.blog_title<br>3.blog_content** <br> 
-  > /get delect_article <br>
-    **1.id** <br>
-- 博客评论接口 
-  > /get get_all_comments <Br>
-    **1.blog_article_id<br>2.page<br>3.number**<Br>
-  > /post add_comments <Br>
-    **1.blog_article_id<Br>2.blog_id<Br>3.comments_content**<br>
-- 博客评论回复接口 
-  > /get get_all_reply <Br>
-    **1.blog_comments_id<br>2.page<br>3.number**<Br>
-  > /post add_reply
-    **1.blog_comments_id<br>2.commtens_id<br>3.reply_content<br>4.reply_id**<Br>
-  
-  ....
+服务器支持俩种使用方式
+ 1. socket
+ 2. 不进行socket
+ (推荐使用socket，使用前请先联系作者添加你的账号，或者下载本项目到本地自行运行，请运行app3.js文件)
+ <br>
+ <font color="#f8f8f8">以下如果进行sokcet连接方式请求服务器请把用户身份证id携带至请求头，否则则放在post或者get请求json参数中</font>
 
-2.数据库表格设计  (初稿并非完整表设计，仅供观赏)
-  - blog_user表格 (用户表)
-   
-   
-   | id | blog_name | blog_password | blog_email | blog_notice |
-   | --- | --- | --- | --- | --- |
-   | 1 | test | test| test | 0 | 
-   | 2 | test2 | test2| test2 | 0 | 
-   | 3 | test3 | test3| test3 | 0 |
-   ---
-   
-   - blog_article表格(博客文章表)
-   <br>*blog_id字段与用户表的id字段进行外键链接*
-   
-   
-   |id|blog_id|blog_title|blog_content|create_time|read_number|aricle_type|
-   | --- | --- | --- | --- | --- | --- | --- |
-   |1|1|android四大组件|活动，广播。。。。。|2019-10-27 21:10:44|0|Android|
-   ---
- 
-   - blog_comments表格(评论表)
-   <br>*blog_article_id字段与博客文章表的id字段进行外键链接*
-   
-   
-   |id|blog_article_id|blog_id|comments_content|create_time|
-   | --- | --- | --- | --- | --- |
-   |1|1|1|第一条评论|2019-10-27 21:10:44|
-   ---
-   
-   - blog_reply表格(评论回复表)
-   <br>*blog_comments_id字段与评论表的id字段进行外键链接*
-   
-   
-   |id|blog_comments_id|commtens_id|reply_content|reply_id|create_time|
-   | --- | --- | --- | --- | --- |---|
-   |1|1|2|第一条评论回复|1|2019-10-27 21:10:44|
-   |2|1|3|第二条评论回复|1|2019-10-27 21:10:44|
-   |3|1|3|第三条评论回复|2|2019-10-27 21:10:44|
-   
-   
-   -blog_notice表格(用户系统通知表，仅支持使用长连接方式登陆的用户)
-   
-   
-   |id|blog_id|text|create_time|
-      |---|---|---|---|
-      |1|7|有人评论了|2019-10-27 21:10:44|
-      
 
-![123]["https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1428364859,3799681648&fm=26&gp=0.jpg]
+url:http://47.94.255.194:3222/
+服务器目前基础功能已经全部开发完毕：
+ - 用户操作
+   - 登陆 <font color="#4767ff">**get**</font>
+     - login
+	 ```
+	 json:{"blog_name":"","blog_password":""}
+	 ```
+    - 查询通知信息 <font color="#4767ff">**get**</font>
+	 ```
+	 json:{"id":""}
+	 id:blog_id 用户身份id
+	 ```
+	- 修改通知信息 <font color="#4767ff">**get**</font>
+	```
+	json:{"blog_notice":"","id":""}
+	blog_notice:已经查看的通知数量
+    id:blog_id 用户身份id
+	```
+ - 博客文章发表
+   - add_article  <font color="#4794ff">**post**</font>
+    blog_id是身份令牌id
+	俩种不同的传参方式供使用
+	1. 一种携带在请求头中 {"authorization":""} socket连接方式
+	 ```
+	json:{"blog_title":"","blog_content":"","article_type":""}
+	header:{"authorization":""}
+	blog_title:文章标题
+	blog_content:文章内容
+	article_type:文章类型
+	```
+	2. 一种携带在post请求的json数据中 不进行sokcet连接方式
+    ```
+	json:{"blog_id":""，"blog_title":"","blog_content":"","article_type":""}
+	```
+ - 博客文章修改
+   - update_article <font color="#4767ff">**post**</font>
+    blog_id是身份令牌id
+	俩种不同的传参方式供使用
+	1. 一种携带在请求头中 {"authorization":""} socket连接方式
+	 ```
+	json:{"blog_title":"","blog_content":"","article_type":"","id":""}
+	header:{"authorization":""}
+	blog_title:文章标题
+	blog_content:文章内容
+	article_type:文章类型
+	id:文章id
+	```
+	2. 一种携带在post请求的json数据中 不进行sokcet连接方式
+    ```
+	json:{"blog_id":""，"blog_title":"","blog_content":"","article_type":"","id":""}
+	```
+ - 博客文章删除
+   - delect_article <font color="#4769ff">**post**</font>
+    blog_id是身份令牌id
+	俩种不同的传参方式供使用
+	1. 一种携带在请求头中 {"authorization":""} socket连接方式
+	 ```
+	json:{"id":""}
+	header:{"authorization":""}
+	id:文章id
+	```
+	2. 一种携带在post请求的json数据中 不进行sokcet连接方式
+    ```
+	json:   {"blog_id":""，"id":""}
+	```
+ - 博客阅读量
+   - 查询
+     查询文字接口返回的数据中自带了阅读量这一字段
+   - 修改 <font color="#4767ff">**post**</font>
+     - update_readnumber
+	   ```
+	   json:{"id":""}
+	   id:文章id
+	   ```
+ - 博客文章热度查询 <font color="#4767ff">**get**</font>
+ - 博客最新文章查询 <font color="#4767ff">**get**</font>
+   - fn_search_readortime
+   ```
+   json:{"blog_id:"","rt":"","page":0,"number":10}
+   blog_id:用户身份id 这里一定要放在json数据中
+   rt:类型表示你需要查询哪种 一：热度查询 二：时间查询
+   page:页码
+   number:每页显示条数
+   ```
+ - 博客文章查询
+   - 全部查询
+     - get_all_article  <font color="#4767ff">**get**</font>
+	 ```
+	 json:{"blog_id":"","page":0,"number":10}
+	  blog_id:用户身份id 这里一定要放在json数据中
+      page:页码
+      number:每页显示条数
+	 ```
+   - 分类查询
+     - search_type <font color="#4767ff">**get**</font>
+	 ```
+	 json:{"article_type":"","blog_id":"","page":0,"number":10}
+	  article_type:文章类型
+	  blog_id:用户身份id 这里一定要放在json数据中
+      page:页码
+      number:每页显示条数
+	 ```
+ - 评论发表
+   - 查询
+     - add_comments <font color="#4767ff">**post**</font>
+	 ```
+	 json:{"blog_article_id":"","comments_name":"","comments_content":""}
+	 blog_article_id:文章id
+	 comments_name:评论名字
+	 comments_content:评论内容
+	 ```
+   - 添加
+	 - get_all_comments <font color="#4767ff">**get**</font>
+	   ```
+	   json:{"blog_article_id":"","page":0,"number":100}
+	   blog_article_id:文章id
+	   ```
+ - 评论回复
+   - 查询
+     - add_reply <font color="#4767ff">**post**</font>
+	 ```
+	 json:{"blog_comments_id":"","comments_name":"","reply_content":"","reply_name":""}
+	 blog_comments_id:文章id
+	 comments_name:评论名字
+	 comments_content:评论内容
+	 reply_name:被回复人的名字
+	 ```
+   - 添加
+	  - get_all_reply <font color="#4767ff">**get**</font>
+	   ```
+	   json:{"blog_comments_id":"","page":0,"number":100}
+	   blog_comments_id:文章id
+	   ```
+ - 通知信息获取
+   - 查询
+     - add_notice <font color="#4767ff">**post**</font>
+	 ```
+	 json:{"blog_id":"","text":""}
+	 blog_id:用户身份id
+	 text:评论名字
+	 ```
+  - 添加
+	 - search_all <font color="#4767ff">**get**</font>
+	   ```
+	   json:{"blog_id":""}
+	   blog_id:用户身份id
+	   ```
+
+#### qq:634448817
+#### tel:15720989670
       
