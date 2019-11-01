@@ -4,7 +4,7 @@ const table_name = 'blog_article';
 
 //query all article data
 function get_all_article(blog_id,page, number) {
-    var sql = 'SELECT * FROM ' + table_name + ' WHERE blog_id='+blog_id+' LIMIT ' + page + ',' + number + '';
+    var sql = 'SELECT * FROM ' + table_name + ' WHERE blog_id='+blog_id+' order by  create_time desc  LIMIT ' + page + ',' + number + '';
     var connection = pool.connstart();
     return new Promise(function (resolve, reject) {
             connection.query(sql, function (err, result) {
@@ -56,7 +56,7 @@ function query_title(blog_id,title,page,number){
 
 //query all data by article_type
 function query_type(blog_id,type,page,number){
-    var sql = 'SELECT * FROM '+table_name+' WHERE blog_id='+blog_id+' and article_type like \''+type+'\' LIMIT '+page+','+number+''
+    var sql = 'SELECT * FROM '+table_name+' WHERE blog_id='+blog_id+' and article_type like \''+type+'\' order by  create_time desc LIMIT '+page+','+number+''
     var connection = pool.connstart();
     return new Promise(function (resolve, reject) {
         connection.query(sql,function (err,result) {
