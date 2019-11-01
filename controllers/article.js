@@ -80,6 +80,37 @@ var fn_delect_article = async (ctx,next) => {
     ctx.response.body = '{"code":0,"msg":"删除成功"}';
 };
 
+var fn_update_article = async (ctx,next) => {
+    if(ctx.request.body.blog_title==undefined||ctx.request.body.blog_content==undefined||ctx.request.body.article_type==undefined
+        ||ctx.request.body.id==undefined){
+        ctx.response.body = '{"code":-1,"msg":"参数错误"}';
+        return ;
+    }
+    var blog_id;
+    let index=await util.isqq(ctx);
+    if(index==0){
+        blog_id=ctx.header.authorization;
+    }else if (index==1){
+        blog_id=ctx.request.body.blog_id;
+    }else{
+        ctx.response.body = '{"code":-1,"msg":"请先登陆"}';
+        return ;
+    }
+    var arr=[ctx.request.body.blog_title,ctx.request.body.blog_content,ctx.request.body.article_type,ctx.request.body.id];
+    var res = await articleDao.update_article(arr);
+    ctx.response.body = '{"code":0,"msg":"修改成功"}';
+};
+
+var fn_update_readnumber = async (ctx,next) => {
+    if(ctx.request.body.id==undefined){
+        ctx.response.body = '{"code":-1,"msg":"参数错误"}';
+        return ;
+    }
+    var res = await  articleDao.query_id(ctx.request.body.id);
+    var arr=[(parseInt(res[0].read_number)+1),ctx.request.body.id];
+    var res = await articleDao.update_readnumber(arr);
+    ctx.response.body = '{"code":0,"msg":"修改成功"}';
+};
 
 module.exports = {
     'GET /get_all_article':fn_get_all_article,
@@ -88,5 +119,7 @@ module.exports = {
     'GET /search_type':fn_search_type,
     'GET /search_readortime':fn_search_readortime,
     'GET /search_id':fn_search_id,
-    'GET /search_title':fn_search_title
+    'GET /search_title':fn_search_title,
+    'POST /update_article':fn_update_article,
+    'POST /update_readnumber':fn_update_readnumber
 };

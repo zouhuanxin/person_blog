@@ -126,7 +126,7 @@ function add_article(arr){
 
 //update blog article
 function update_article(arr){
-    var sql = 'UPDATE '+table_name+' SET blog_title=? ,blog_content=? WHERE id = ?';
+    var sql = 'UPDATE '+table_name+' SET blog_title=? ,blog_content=? ,article_type=? WHERE id = ?';
     var connection = pool.connstart();
     return new Promise(function (resolve, reject) {
         connection.query(sql,arr,function (err,result) {
@@ -182,5 +182,6 @@ module.exports = {
     delect_article,
     query_type,
     query_readortime,
-    query_id
+    query_id,
+    update_readnumber
 }
